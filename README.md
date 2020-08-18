@@ -3,7 +3,7 @@
 
 [![CircleCI](https://circleci.com/gh/Maxime-CLS/tech-lunch-devops.svg?style=svg&circle-token=8f80002eaa1ad9d1601791725b1fcc1952bea479)](https://circleci.com/gh/Maxime-CLS/tech-lunch-devops)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ReachInfinity_hugo-circleci-1&metric=alert_status)](https://sonarcloud.io/dashboard?id=ReachInfinity_hugo-circleci-1)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Maxime-CLS_tech-lunch-devops&metric=alert_status)](https://sonarcloud.io/dashboard?id=Maxime-CLS_tech-lunch-devops)
 
 ![Pipeline DevOps](https://media.joomeo.com/large/5a7c927573330.jpg)  
 
