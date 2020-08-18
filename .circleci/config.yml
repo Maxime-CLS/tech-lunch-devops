@@ -70,10 +70,10 @@ workflows:
   version: 2.1
   build_deploy_tests_and_scan:
     jobs:
-      - build
-      - scan:
+      - scan
+      - build:
           requires:
-            - build
+            - scan
       - test:
           requires:
             - build
@@ -92,5 +92,5 @@ workflows:
               only:
                 - master
     jobs:
-      - build
       - scan
+      - build
