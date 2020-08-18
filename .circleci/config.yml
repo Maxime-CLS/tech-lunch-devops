@@ -1,3 +1,36 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@ReachInfinity 
+ReachInfinity
+/
+hugo-circleci-1
+1
+00
+Code
+Issues
+5
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+hugo-circleci-1/.circleci/config.yml
+@ReachInfinity
+ReachInfinity Suppression du filtre
+Latest commit b55e9bf on 25 Mar
+ History
+ 2 contributors
+@maxime-cls-workshop@ReachInfinity
+97 lines (93 sloc)  2.74 KB
+ 
 version: 2.1
 
 jobs:
@@ -44,7 +77,17 @@ jobs:
      - checkout
      - run:
          name: Quality Scan
-         command: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="$SONAR_LOGIN"        
+         command: sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="$SONAR_LOGIN"
+  test:
+     machine: true
+     steps:
+     - checkout
+     - run:
+        name: Running k6 tests
+        command: |
+          docker pull loadimpact/k6:latest 
+          docker run -i -e K6_CLOUD_TOKEN=$K6_CLOUD_TOKEN -v $PWD:/ci/ loadimpact/k6:latest cloud /ci/loadtests/performance-test.js
+        
   testUI:
       docker:
         - image: circleci/node:13.10.1-browsers
@@ -60,10 +103,27 @@ workflows:
   version: 2.1
   build_deploy_tests_and_scan:
     jobs:
-      - scan
-      - build:
+      - build
+      - scan:
+          requires:
+            - build
+      - test:
           requires:
             - build
       - testUI:
           requires:
             - build
+ # Scheduled workflows may be delayed by up to 15 minutes.
+ # This is done to maintain reliability during busy times such as 12:00am UTC. 
+ # Scheduled workflows should not assume they are started with to-the-minute accuracy.
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+      - scan
