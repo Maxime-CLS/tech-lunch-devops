@@ -43,7 +43,7 @@ jobs:
       - run: exit 0
       - slack/status:
           fail_only: false
-          only_for_branches: master
+          only_for_branches: 'master'
           webhook: '${SLACK_WEBHOOK}'
   scan:
      docker:
