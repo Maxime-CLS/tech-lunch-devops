@@ -43,7 +43,8 @@ jobs:
       - run: exit 0
       - slack/status:
           fail_only: false
-          webhook: webhook
+          only_for_branches: master
+          webhook: '${SLACK_WEBHOOK}'
   scan:
      docker:
        - image: sonarsource/sonarcloud-scan:1.1.0
