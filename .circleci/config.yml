@@ -53,6 +53,12 @@ jobs:
      - run:
          name: Quality Scan
          command: sonar-scanner -X -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="$SONAR_LOGIN"
+     - run: exit 0
+     - slack/status:
+         fail_only: false
+         only_for_branches: 'master'
+         webhook: '${SLACK_WEBHOOK}'
+         
   test:
      machine: true
      steps:
@@ -62,6 +68,11 @@ jobs:
         command: |
           docker pull loadimpact/k6:latest 
           docker run -i -e K6_CLOUD_TOKEN=$K6_CLOUD_TOKEN -v $PWD:/ci/ loadimpact/k6:latest cloud /ci/loadtests/performance-test.js
+     - run: exit 0
+     - slack/status:
+         fail_only: false
+         only_for_branches: 'master'
+         webhook: '${SLACK_WEBHOOK}'
         
   testUI:
       docker:
@@ -73,6 +84,11 @@ jobs:
             command: |
               npm i selenium-webdriver
               node browser-testing/tech-lunch.js
+        - run: exit 0
+        - slack/status:
+            fail_only: false
+            only_for_branches: 'master'
+            webhook: '${SLACK_WEBHOOK}'
  
 workflows:
   version: 2.1
