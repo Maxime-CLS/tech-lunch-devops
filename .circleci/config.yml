@@ -41,9 +41,9 @@ jobs:
             cf login -a "$CF_API" -u "$CF_USERNAME" -p "$CF_PASSWORD" -o "$CF_ORG" -s "$CF_SPACE_PROD"
             cf push
       - run: exit 0
-          - slack/status:
-              fail_only: false
-              webhook: webhook
+      - slack/status:
+          fail_only: false
+          webhook: webhook
   scan:
      docker:
        - image: sonarsource/sonarcloud-scan:1.1.0
