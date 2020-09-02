@@ -5,6 +5,7 @@ title = "Tech-Lunch-DevOps"
 theme = "ananke"
 DefaultContentLanguage = "fr"
 
+
 ### Pour le theme presentation
 [params]
 favicon = ""
