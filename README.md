@@ -8,6 +8,7 @@
 
 ![Pipeline DevOps](https://media.joomeo.com/large/5a7c927573330.jpg)  
 
+
 ### Prérequis :red_circle:
 - [Git client](https://git-scm.com/downloads)
 - [Hugo client](https://gohugo.io/getting-started/installing)
