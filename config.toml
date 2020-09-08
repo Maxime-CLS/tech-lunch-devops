@@ -1,7 +1,7 @@
 baseURL = "https://tech-lunch-devops.cfapps.io/"
 languageName = "Français"
 languageCode = "fr-FR"
-title = "Tech-Lunch-DevOps"
+title = "Tech-Lunch-DevOps-#1"
 theme = "ananke"
 DefaultContentLanguage = "fr"
 
